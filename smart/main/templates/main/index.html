@@ -1,0 +1,237 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+
+{% block title %}
+    <title>Умней для детей - Главная</title>
+{% endblock %}
+
+
+{% block css %}
+    <!-- Подключение CSS библиотек -->
+    <!-- Animate.css -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <!-- JustValidate -->
+    <link rel="stylesheet" href="{% static 'main\css\libs\justValidateTooltip.min.css' %}">
+    <!-- ПОДКЛБЧЕНИЕ CCS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'main\css\main-tag\index.css' %}">
+    <link rel="stylesheet" href="{% static 'main\css\block\modal.css' %}">
+    <link rel="stylesheet" href="{% static 'main\css\base\media.css' %}">
+{% endblock %}
+
+{% block header-nav %}
+    <div class="header-nav">
+        <ul class="header-nav__list">
+            <li class="header-nav__item active-page"><a href="{% url 'home' %}" class="header-nav__link">Главная</a></li>
+            <li class="header-nav__item"><a href="{% url 'course' %}" class="header-nav__link">Курсы</a></li>
+            <li class="header-nav__item"><a href="{% url 'about' %}" class="header-nav__link">О&nbsp;нас</a></li>
+            <li class="header-nav__item"><a href="{% url 'contacts' %}" class="header-nav__link">Контакты</a></li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block main %}
+    <main class="main">
+
+            <!-- Главная секция -->
+            <section class="hero">
+                <div class="container">
+                    <!--
+                        Второй вариант позиционирования картинки "hero__bg"
+                        Проще перестраивать размеры картинки при адаптивной верстке
+                    -->
+                    <div class="hero__wrapper hero__bg">
+                        <div class="hero__content">
+                            <h1 class="hero__title"><span class="hero__title--bold">Частная школа</span><br>
+                                для детей и&nbsp;подростков
+                            </h1>
+                            <p class="hero__descr section-descr">Значимость этих проблем настолько очевидна, что сложившаяся
+                                структура организации играет важную роль!</p>
+                            <div class="btn-wrapper">
+                                <button class="btn hero__btn modal__btn">Оставить заявку</button>
+                            </div>
+                        </div>
+                        <!--
+                            Первый вариант позиционирования картинки
+                            Минусы:
+                            Картинка налезает на текст справа при сжатие размера страницы
+                            (вызовет трудность при адаптиве).
+                        -->
+                        <!-- <img src="./img/hero/hero__img.png" alt="hero img" class="hero__img"> -->
+                    </div>
+
+                    {% include 'main/modal.html' %}
+                     {% comment %} <form enctype="multipart/form-data" class="form js-form-connection animate__animated animate__delay-1s" method="post"  action="{% url 'send_message' %}"> 
+                        {% csrf_token %} 
+    
+                        <div class="just-validate-tooltip-container">
+                            <input  type="text" name="name" data-validate-field="name" placeholder = "Ваше имя"    class="form__input service__descr">
+                        </div>
+    
+                        <div class="just-validate-tooltip-container">
+                            <input  type="tel"  name="phone" data-validate-field="tel"  placeholder = "Ваш телефон" class="form__input section-descr">
+                        </div>
+    
+                        <button type="submit" class="form__btn btn btn-reset fcs-ripple-out ">Оставить заявку</button>
+                    </form>  {% endcomment %}
+                    
+                    <div class="result-message">
+                        {% if success_message %}
+                            <p>{{ success_message }}</p>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Секция школы -->
+            <section class="school ">
+                <div class="container">
+                    <ul class="school__list">
+                        <!-- 1 -->
+                        <li class="school__item">
+                            <h3 class="school__title ">Средняя школа</h3>
+                            <p class="school__descr section-descr">Значимость этих проблем на&nbsp;столько очевидна, что
+                                сложияся структура мероприятия</p>
+                            <a href="{% url 'course' %}" class="btn school__btn school__btn--midle-school">Выбрать курс </a>
+                        </li>
+                        <!-- 2 -->
+                        <li class="school__item">
+                            <h3 class="school__title ">Дошкольное обучение</h3>
+                            <p class="school__descr section-descr">Значимость этих проблем на&nbsp;столько очевидна, что
+                                сложияся структура мероприятия </p>
+                            <a href="{% url 'course' %}" class="btn school__btn school__btn--preschool-education">Выбрать курс </a>
+                        </li>
+                        <!-- 3 -->
+                        <li class="school__item ">
+                            <h3 class="school__title ">Дополнительные</h3>
+                            <p class="school__descr section-descr">Значимость этих проблем на&nbsp;столько очевидна, что
+                                сложияся структура мероприятия</p>
+                            <a href="{% url 'course' %}" class="btn school__btn school__btn--additional-education">Выбрать курс </a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Секция больше о школе -->
+            <section class="about ">
+                <div class="container about__bg">
+                    <div class="about__wrapper ">
+                        <div class="about__content">
+                            <h3 class="about__title section-title">Подробнее о&nbsp;школе</h3>
+                            <p class="about__descr section-descr">Повседневная практика показывает, что постоянный
+                                количественный рост и&nbsp;сфера нашей активности влечет за&nbsp;собой процесс внедрения
+                                и&nbsp;модернизации систем массового участия. Разнообразный и&nbsp;богатый опыт новая
+                                модель.</p>
+                        </div>
+                        <div class="counters">
+                            <!-- Ученики -->
+                            <div class="counters__student --green">
+                                <p class="counters__number">472</p>
+                                <p class="counters__name">Ученика</p>
+                            </div>
+                            <!-- ОГЭ -->
+                            <div class="counters__average --orange">
+                                <p class="counters__number">75.4</p>
+                                <p class="counters__name">Среднее ЕГЭ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Секция отзывов -->
+            <section class="reviews ">
+                <div class="container">
+                    <div class="reviews__header">
+                        <h3 class="reviews__title section-title">Отзывы от&nbsp;родителей</h3>
+                        <a href="#" class="reviews__link">Узнать больше об&nbsp;Умней</a>
+                    </div>
+
+                    <ul class="reviews__list">
+
+                        <!-- 1 -->
+                        <li class="reviews__item">
+                            <div class="reviews__item-wrapper">
+                                <img src="{% static 'main\img\index\reviews\5.svg' %}" alt="#" class="reviews__grade">
+                                <p class="reviews__descr section-descr">Наконец к&nbsp;детям уважительное отношение, любовь
+                                    к&nbsp;своему делу есть в&nbsp;каждом сотруднике, а&nbsp;главное&nbsp;&mdash; любовь
+                                    к&nbsp;моим детям.
+                                </p>
+                            </div>
+                            <p class="reviews__reviewer --green-light-green">Клавдия&nbsp;Н.</p>
+                        </li>
+
+                        <!-- 2 -->
+                        <li class="reviews__item">
+                            <div class="reviews__item-wrapper">
+                                <img src="{% static 'main\img\index\reviews\5.svg' %}" alt="#" class="reviews__grade">
+                                <p class="reviews__descr section-descr">Отличная школа! Отдали сестренку, когда
+                                    то&nbsp;и&nbsp;сама там училась.</p>
+                            </div>
+                            <p class="reviews__reviewer --orange-red">Саша&nbsp;Ш.</p>
+                        </li>
+
+                        <!-- 3 -->
+                        <li class="reviews__item">
+                            <div class="reviews__item-wrapper">
+                                <img src="{% static 'main\img\index\reviews\5.svg' %}" alt="#" class="reviews__grade">
+                                <p class="reviews__descr section-descr">Эстетика в&nbsp;воспитании детей&nbsp;&mdash;
+                                    не&nbsp;последняя вещь. Полноценная школа. Все ученики интеллигентные.</p>
+                            </div>
+                            <p class="reviews__reviewer --beige-yellow">Николай Т.</p>
+                        </li>
+
+                        <!-- 4 -->
+                        <li class="reviews__item">
+                            <div class="reviews__item-wrapper"><img src="{% static 'main\img\index\reviews\4.svg' %}" alt="#"
+                                    class="reviews__grade">
+                                <p class="reviews__descr section-descr">Учимся уже полгода. В&nbsp;целом довольны. Повезло
+                                    с&nbsp;учителем, хороший уровень всех предметов. Хорошее подспорье в&nbsp;обучении.</p>
+                            </div>
+                            <p class="reviews__reviewer --light-green-green-">Николай Т.</p>
+                        </li>
+
+                        <!-- 5 -->
+                        <li class="reviews__item">
+                            <div class="reviews__item-wrapper"><img src="{% static 'main\img\index\reviews\5.svg' %}" alt="#"
+                                    class="reviews__grade">
+                                <p class="reviews__descr section-descr">Мой сын учится в&nbsp;этой школе уже несколько лет.
+                                    Ходит в&nbsp;школу с&nbsp;удовольствием.</p>
+                            </div>
+                            <p class="reviews__reviewer --red-orange">Андрей О.</p>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Cекция application -->
+            <section class="application ">
+                <div class="container">
+                    <div class="application__wrapper">
+                        <h3 class="application__title section-title">Оставьте заявку</h3>
+                        <p class="application__descr section-descr">А&nbsp;мы&nbsp;вам перезвоним и&nbsp;ответим
+                            на&nbsp;любые вопросы!</p>
+                        <form action="#" class="form-application">
+                            <input type="tel" class="form-application__tel" placeholder="Введите  ваш номер">
+                            <button type="submit" class="form-application__btn"><img
+                                    src="{% static 'main\img\index\application\application-arrow.svg' %}" alt="arrow"></button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+{% endblock %}
+
+{% block MyJS %}
+    <!--  Библиотеки JS  -->
+    {% comment %} <script src="{% static 'main\js\libs\inputmask.min.js' %}"></script>
+    <script src="{% static 'main\js\libs\just-validate.min.js' %}"></script> {% endcomment %}
+    <!-- Мой JS -->
+    {% comment %} <script src="{% static 'main\js\valid.js' %}"></script> {% endcomment %}
+    <script src="{% static 'main\js\modal.js' %}"></script>
+{% endblock %}
